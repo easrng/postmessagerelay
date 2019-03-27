@@ -22,6 +22,7 @@ function init(_channel){
     window.top.postMessage(JSON.parse(JSON.parse(event.data).message),"*");
   };
   window.onmessage=function (event){
+    console.log(event);
     if(event._connect){
       connect(event._connect);
     } else {
