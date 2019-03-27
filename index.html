@@ -23,8 +23,8 @@ function init(_channel){
   };
   window.onmessage=function (event){
     console.log(event);
-    if(event._connect){
-      connect(event._connect);
+    if(event.data._connect){
+      connect(event.data._connect);
     } else {
       send(connectedChannel,event.data)
     }
