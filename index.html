@@ -10,7 +10,7 @@
   <!-- Scripts -->
   <script>
 if(typeof(EventSource) !== "undefined") {
-  fetch("https://cors-anywhere.herokuapp.com/https://smee.io/new",{mode:"cors"}).then(function (e){window.e=e;window._channel=e.url.slice(36);console.log(_channel);init(_channel);})
+  fetch("https://cors-anywhere.herokuapp.com/https://smee.io/new",{mode:"cors"}).then(function (e){window.e=e;window._channel=e.url.slice(36);/*console.log(_channel);*/init(_channel);})
 } else {
   console.error("Sorry, your browser does not support server-sent events...");
 }
