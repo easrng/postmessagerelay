@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <!--  Meta  -->
+  <meta charset="UTF-8" />
+  <title>PostMessage Relay ( powered by smee.io)</title>
+  
+  <!--  Styles  -->
+  <link rel="stylesheet" href="styles/index.processed.css">
+</head>
+<body>
+  
+  <!--
+
+    Wow! What do you want to build?
+
+    You have so many possibilities right now... Looking for something to kick off?
+    How about a simple folio page to show off everything you're going to make!
+   
+  -->
+  
+  <!-- Scripts -->
+  <script>
+    /**
+ * index.js
+ * - All our useful JS goes here, awesome!
+ */
+if(typeof(EventSource) !== "undefined") {
+  fetch("https://cors-anywhere.herokuapp.com/https://smee.io/new",{mode:"cors"}).then(function (e){window.e=e;window._channel=e.url.slice(36);console.log(_channel);init(_channel);})
+} else {
+  console.error("Sorry, your browser does not support server-sent events...");
+}
+
+function init(_channel){
+    var source = new EventSource(_channel);
+  source.onmessage = function(event) {
+    top.postMessage(JSON.parse(JSON.parse(event.data).message),"*");
+  };
+  window.onmessage=function (event){
+    send(connectedChannel,event.data)
+  }
+  function send(target,msg){
+  fetch("https://cors-anywhere.herokuapp.com/"+target,{method:"post",headers:{"message":JSON.stringify(msg)}})
+}
+}
+function connect(cchannel){
+  connectedChannel=cchannel;
+}
+function channel(){
+  return _channel
+}
+  </script>
+</body>
+</html>
