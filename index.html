@@ -10,13 +10,13 @@
   <!-- Scripts -->
   <script>
 if(typeof(EventSource) !== "undefined") {
-  fetch("https://cors-anywhere.herokuapp.com/https://smee.io/new",{mode:"cors"}).then(function (e){window.e=e;window._channel=e.url.slice(36);/*console.log(_channel);*/init(_channel);})
+  fetch("https://cors-anywhere.herokuapp.com/https://smee.io/new",{mode:"cors"}).then(function (e){window.e=e;window._channel=e.url.slice(52);/*console.log(_channel);*/init(_channel);})
 } else {
   console.error("Sorry, your browser does not support server-sent events...");
 }
 
 function init(_channel){
-    var source = new EventSource(_channel);
+    var source = new EventSource("https://smee.io/"+_channel);
   window.parent.postMessage({_channel:_channel},"*")
   source.onmessage = function(event) {
     window.parent.postMessage(JSON.parse(JSON.parse(event.data).message),"*");
@@ -30,7 +30,7 @@ function init(_channel){
     }
   }
   function send(target,msg){
-  fetch("https://cors-anywhere.herokuapp.com/"+target,{method:"post",headers:{"message":JSON.stringify(msg)}})
+  fetch("https://cors-anywhere.herokuapp.com/https://smee.io/"+target,{method:"post",headers:{"message":JSON.stringify(msg)}})
 }
   function connect(cchannel){
   window.connectedChannel=cchannel;
