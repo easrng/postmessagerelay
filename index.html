@@ -17,6 +17,7 @@ if(typeof(EventSource) !== "undefined") {
 
 function init(_channel){
     var source = new EventSource(_channel);
+  window.parent.postMessage({_channel:_channel},"*")
   source.onmessage = function(event) {
     window.parent.postMessage(JSON.parse(JSON.parse(event.data).message),"*");
   };
@@ -33,7 +34,6 @@ function init(_channel){
 }
   function connect(cchannel){
   window.connectedChannel=cchannel;
-  window.parent.postMessage({_channel:_channel})
 }
 }
   </script>
