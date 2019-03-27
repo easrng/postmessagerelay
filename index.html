@@ -5,27 +5,10 @@
   <!--  Meta  -->
   <meta charset="UTF-8" />
   <title>PostMessage Relay ( powered by smee.io)</title>
-  
-  <!--  Styles  -->
-  <link rel="stylesheet" href="styles/index.processed.css">
 </head>
-<body>
-  
-  <!--
-
-    Wow! What do you want to build?
-
-    You have so many possibilities right now... Looking for something to kick off?
-    How about a simple folio page to show off everything you're going to make!
-   
-  -->
-  
+<body> 
   <!-- Scripts -->
   <script>
-    /**
- * index.js
- * - All our useful JS goes here, awesome!
- */
 if(typeof(EventSource) !== "undefined") {
   fetch("https://cors-anywhere.herokuapp.com/https://smee.io/new",{mode:"cors"}).then(function (e){window.e=e;window._channel=e.url.slice(36);console.log(_channel);init(_channel);})
 } else {
